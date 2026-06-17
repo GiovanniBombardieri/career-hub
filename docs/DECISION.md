@@ -6,17 +6,9 @@ The goal is to preserve context, rationale and trade-offs behind important choic
 
 ---
 
-## Status Legend
-
-- Accepted
-- Superseded
-- Deprecated
-
----
-
-## DEC-001 - Companies exist independently from applications
-## DEC-002 - Positions are first-class entities
-## DEC-003 - Contacts use a lookup table for roles
-## DEC-004 - Activities represent the timeline of the system
-## DEC-005 - PostgreSQL as primary database
-## DEC-006 - Monorepo architecture
+### DEC-001 - Companies exist independently from applications
+### DEC-002 - Positions are first-class entities
+### DEC-003 - Contacts use a lookup table for roles
+### DEC-004 - Activities represent the timeline of the system
+### DEC-005 - PostgreSQL as primary database
+### DEC-006 - Monorepo architecture
