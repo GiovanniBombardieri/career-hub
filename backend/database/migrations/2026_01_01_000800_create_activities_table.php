@@ -15,7 +15,7 @@ return new class extends Migration {
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->enum('status', array_column(\App\Enums\ActivityType::cases(), 'value'));
+            $table->enum('type', array_column(\App\Enums\ActivityType::cases(), 'value'));
             $table->string('title');
             $table->text('description')->nullable();
 
