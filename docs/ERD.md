@@ -156,14 +156,14 @@ Seed:
 
 ### activities
 
-| Column | Type | Nullable |
-|----------|----------|----------|
-| id | bigint | No |
+| Column | Type      | Nullable |
+|----------|-----------|----------|
+| id | bigint    | No |
 | company_id | bigint FK | No |
 | application_id | bigint fk | Yes |
-| type | string | No |
-| title | string | No |
-| description | text | Yes |
+| type | enum      | No |
+| title | string    | No |
+| description | text      | Yes |
 | occurred_at | timestamp | No |
 | created_at | timestamp | No |
 | updated_at | timestamp | No |
