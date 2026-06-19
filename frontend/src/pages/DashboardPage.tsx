@@ -1,5 +1,6 @@
 import { useCompanies } from "../features/companies/hooks/useCompanies.ts";
 import { CompaniesTable } from "../features/companies/components/CompaniesTable";
+import {AppLayout} from "../components/layout/AppLayout";
 
 export default function DashboardPage() {
     const { companies, loading, error } = useCompanies();
@@ -8,10 +9,10 @@ export default function DashboardPage() {
     if (error) return <p>{error}</p>
 
     return (
-        <div>
+        <AppLayout>
             <h1>Companies</h1>
 
             <CompaniesTable companies={companies} />
-        </div>
+        </AppLayout>
     );
 }
