@@ -1,7 +1,9 @@
 import { api } from "../../../api/client";
 
-export async function getCompanies() {
-    const response = await api.get("/companies");
+export const companyService = {
+    getAll: async () => {
+        const { data } = await api.get("/companies");
 
-    return response.data;
+        return data;
+    }
 }
