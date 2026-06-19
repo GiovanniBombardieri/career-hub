@@ -22,3 +22,17 @@ export interface Company {
     created_at: string;
     updated_at: string;
 }
+
+export interface CreateCompanyPayload {
+    name: string;
+    website?: string;
+    linkedin_url?: string;
+    country: string;
+    region?: string;
+    city?: string;
+    remote_policy: string;
+    company_size: string;
+    status: string;
+    score?: number | null;
+    why_interested?: string;
+}

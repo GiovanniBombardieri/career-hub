@@ -3,9 +3,11 @@ import { CompaniesTable } from "../features/companies/components/CompaniesTable"
 import {AppLayout} from "../components/layout/AppLayout";
 import {PageHeader} from "../components/layout/PageHeader";
 import {Button} from "../components/ui/Button";
+import {useNavigate} from "react-router-dom";
 
 export default function DashboardPage() {
     const { companies, loading, error } = useCompanies();
+    const navigate = useNavigate();
 
     if (loading) return <p>Loading...</p>
     if (error) return <p>{error}</p>
@@ -15,7 +17,7 @@ export default function DashboardPage() {
             <PageHeader
                 title="Companies"
                 actions={
-                    <Button>
+                    <Button onClick={() => navigate("/companies/create")}>
                         + Add Company
                     </Button>
                 }
