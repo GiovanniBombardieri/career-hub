@@ -1,6 +1,8 @@
 import { useCompanies } from "../features/companies/hooks/useCompanies.ts";
 import { CompaniesTable } from "../features/companies/components/CompaniesTable";
 import {AppLayout} from "../components/layout/AppLayout";
+import {PageHeader} from "../components/layout/PageHeader";
+import {Button} from "../components/ui/Button";
 
 export default function DashboardPage() {
     const { companies, loading, error } = useCompanies();
@@ -10,7 +12,14 @@ export default function DashboardPage() {
 
     return (
         <AppLayout>
-            <h1>Companies</h1>
+            <PageHeader
+                title="Companies"
+                actions={
+                    <Button>
+                        + Add Company
+                    </Button>
+                }
+            />
 
             <CompaniesTable companies={companies} />
         </AppLayout>
