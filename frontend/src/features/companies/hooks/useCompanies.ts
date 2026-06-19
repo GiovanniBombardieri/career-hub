@@ -12,9 +12,9 @@ export function useCompanies() {
             setLoading(true);
             setError(null);
 
-            const data = await companyService.getAll();
+            const response = await companyService.getAll();
 
-            setCompanies(data.data);
+            setCompanies(response.data);
         } catch (err: any) {
             setError(err.message ?? "Error fetching companies");
         } finally {

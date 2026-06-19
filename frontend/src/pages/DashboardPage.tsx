@@ -1,4 +1,5 @@
 import { useCompanies } from "../features/companies/hooks/useCompanies.ts";
+import { CompaniesTable } from "../features/companies/components/CompaniesTable";
 
 export default function DashboardPage() {
     const { companies, loading, error } = useCompanies();
@@ -10,11 +11,7 @@ export default function DashboardPage() {
         <div>
             <h1>Companies</h1>
 
-            {companies.map(company => (
-                <div key={company.id}>
-                    {company.name}
-                </div>
-            ))}
+            <CompaniesTable companies={companies} />
         </div>
     );
 }
