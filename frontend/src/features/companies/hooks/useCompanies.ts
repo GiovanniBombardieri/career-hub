@@ -33,3 +33,30 @@ export function useCompanies() {
         refetch: fetchCompanies,
     };
 }
+
+export function useCompany(id: number) {
+    const [company, setCompany] = useState<Company | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchCompany = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+
+                const response = await companyService.getById(id);
+
+                setCompany(response.data);
+            } catch (err: any) {
+                setError(err.message ?? "Error fetching company");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCompany();
+    }, [id]);
+
+    return { company, loading, error };
+}

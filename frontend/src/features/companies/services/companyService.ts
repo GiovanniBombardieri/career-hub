@@ -17,4 +17,9 @@ export const companyService = {
 
         return response.data;
     },
+
+    getById: async (id: number) => {
+        const response = await api.get(`/companies/${id}`);
+        return response.data;
+    }
 };

@@ -1,11 +1,14 @@
 import type { Company } from "../../../types/company";
 import { StatusBadge } from "./StatusBadge";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
     company: Company;
 };
 
 export function CompanyRow({ company }: Props) {
+    const navigate = useNavigate();
+
     return (
         <tr
             style={{
@@ -38,14 +41,14 @@ export function CompanyRow({ company }: Props) {
             </td>
 
             <td style={{ padding: "12px" }}>
-                {[company.city, company.region]
+                {[company.city, company.region, company.country]
                     .filter(Boolean)
                     .join(", ")}
             </td>
 
             <td>
                 <button onClick={() => {
-                    // futuro: navigate('companies/${companies.id}')
+                    navigate(`/companies/${company.id}`)
                 }}>
                     View
                 </button>
