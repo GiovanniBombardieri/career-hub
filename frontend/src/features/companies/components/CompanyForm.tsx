@@ -240,8 +240,10 @@ const inputStyle: React.CSSProperties = {
     width: "100%",
     padding: "10px 12px",
     borderRadius: 8,
-    border: "1px solid #d1d5db",
+    border: "1px solid var(--border)",
     marginTop: 4,
     outline: "none",
     boxSizing: "border-box",
+    background: "var(--surface)",
+    color: "var(--text)",
 };

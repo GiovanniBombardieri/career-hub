@@ -54,6 +54,22 @@
   }
 }
 
+[data-theme="light"] {
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --hover: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --bg: #111827;
+  --surface: #1f2937;
+  --border: #374151;
+  --text: #f9fafb;
+  --hover: #374151;
+}
+
 /*#root {*/
 /*  width: 1126px;*/
 /*  max-width: 100%;*/
