@@ -1,7 +1,7 @@
 import type {ReactNode} from "react";
 import {Header} from "./Header";
 import {Outlet} from "react-router-dom";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 type Props = {
     children?: ReactNode;
@@ -21,8 +21,14 @@ export function AppLayout({ children }: Props) {
                     CareerHUB
                 </div>
                 <nav style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                    <Link to="/">Companies</Link>
-                    <Link to="/companies/create">Create Company</Link>
+                    <NavLink
+                        className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+                         to="/">Companies
+                    </NavLink>
+                    <NavLink
+                        className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+                        to="/companies/create">Create Company
+                    </NavLink>
                 </nav>
             </aside>
 

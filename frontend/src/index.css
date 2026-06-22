@@ -86,6 +86,26 @@
   border-color: var(--text);
 }
 
+.nav-link {
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  transition: background 0.15s ease;
+}
+
+.nav-link:hover {
+  background: var(--hover);
+}
+
+.nav-link.active {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-weight: 500;
+}
+
+
 /*#root {*/
 /*  width: 1126px;*/
 /*  max-width: 100%;*/
