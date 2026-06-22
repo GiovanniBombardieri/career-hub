@@ -57,7 +57,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div style={{ gridColumn: "1 / -1" }}>
                     <label>Name *</label>
                     <input
-                        style={inputStyle}
+                        className="input"
                         value={form.name}
                         onChange={(e) =>
                             update("name", e.target.value)
@@ -69,7 +69,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>Country *</label>
                     <input
-                        style={inputStyle}
+                        className="input"
                         value={form.country}
                         onChange={(e) =>
                             update("country", e.target.value)
@@ -80,7 +80,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>Region</label>
                     <input
-                        style={inputStyle}
+                        className="input"
                         value={form.region ?? ""}
                         onChange={(e) =>
                             update("region", e.target.value || null)
@@ -91,7 +91,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>City</label>
                     <input
-                        style={inputStyle}
+                        className="input"
                         value={form.city ?? ""}
                         onChange={(e) =>
                             update("city", e.target.value || null)
@@ -103,7 +103,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>Status *</label>
                     <select
-                        style={inputStyle}
+                        className="input"
                         value={form.status}
                         onChange={(e) =>
                             update("status", e.target.value)
@@ -124,7 +124,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>Company Size *</label>
                     <select
-                        style={inputStyle}
+                        className="input"
                         value={form.company_size}
                         onChange={(e) =>
                             update("company_size", e.target.value)
@@ -141,7 +141,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>Remote Policy *</label>
                     <select
-                        style={inputStyle}
+                        className="input"
                         value={form.remote_policy}
                         onChange={(e) =>
                             update("remote_policy", e.target.value)
@@ -157,7 +157,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>Website</label>
                     <input
-                        style={inputStyle}
+                        className="input"
                         value={form.website ?? ""}
                         onChange={(e) =>
                             update("website", e.target.value || null)
@@ -168,7 +168,7 @@ export function CompanyForm({onSubmit}: Props) {
                 <div>
                     <label>LinkedIn</label>
                     <input
-                        style={inputStyle}
+                        className="input"
                         value={form.linkedin_url ?? ""}
                         onChange={(e) =>
                             update("linkedin_url", e.target.value || null)
@@ -183,7 +183,7 @@ export function CompanyForm({onSubmit}: Props) {
                         type="number"
                         min={0}
                         max={100}
-                        style={inputStyle}
+                        className="input"
                         value={form.score ?? ""}
                         onChange={(e) =>
                             update("score", e.target.value === "" ? null : Number(e.target.value))
@@ -195,7 +195,8 @@ export function CompanyForm({onSubmit}: Props) {
                 <div style={{ gridColumn: "1 / -1" }}>
                     <label>Why interested</label>
                     <textarea
-                        style={{ ...inputStyle, minHeight: 90 }}
+                        className="input"
+                        style={{ minHeight: 90 }}
                         value={form.why_interested ?? ""}
                         onChange={(e) =>
                             update("why_interested", e.target.value || null)
@@ -235,15 +236,3 @@ export function CompanyForm({onSubmit}: Props) {
         </form>
     );
 }
-
-const inputStyle: React.CSSProperties = {
-    width: "100%",
-    padding: "10px 12px",
-    borderRadius: 8,
-    border: "1px solid var(--border)",
-    marginTop: 4,
-    outline: "none",
-    boxSizing: "border-box",
-    background: "var(--surface)",
-    color: "var(--text)",
-};

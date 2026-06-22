@@ -70,6 +70,22 @@
   --hover: #374151;
 }
 
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-top: 4px;
+  box-sizing: border-box;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
 /*#root {*/
 /*  width: 1126px;*/
 /*  max-width: 100%;*/
