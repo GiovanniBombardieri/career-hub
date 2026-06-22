@@ -3,10 +3,13 @@ export function Header() {
         <header
             style={{
                 borderBottom: '1px solid #e5e5e5',
-                padding: "16px 24px",
+                padding: "12px 24px",
+                background: "white",
             }}
         >
-            <h2>CareerHUB</h2>
+            <h2 style={{ margin: 0, fontSize: "16px" }}>
+                Dashboard
+            </h2>
         </header>
     );
 }

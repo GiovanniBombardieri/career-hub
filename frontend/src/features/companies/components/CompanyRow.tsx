@@ -23,6 +23,12 @@ export function CompanyRow({ company }: Props) {
                     .filter(Boolean)
                     .join(", ")}
             </td>
+
+            <td>
+                <button>
+                    View
+                </button>
+            </td>
         </tr>
     );
 }

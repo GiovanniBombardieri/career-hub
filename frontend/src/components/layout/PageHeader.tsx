@@ -15,7 +15,7 @@ export function PageHeader({ title, actions }: Props) {
         >
             <h1>{title}</h1>
 
-            {actions}
+            {actions && <div>{actions}</div>}
         </div>
     );
 }

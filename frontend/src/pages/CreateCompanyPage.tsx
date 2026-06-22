@@ -1,4 +1,3 @@
-import {AppLayout} from "../components/layout/AppLayout";
 import {CompanyForm} from "../features/companies/components/CompanyForm";
 import {companyService} from "../features/companies/services/companyService.ts";
 import type {CreateCompanyPayload} from "../types/company";
@@ -17,12 +16,12 @@ export default function CreateCompanyPage() {
     };
 
     return (
-        <AppLayout>
+        <>
             <h1>Create Company</h1>
 
             <CompanyForm
                 onSubmit={handleSubmit}
             />
-        </AppLayout>
+        </>
     );
 }

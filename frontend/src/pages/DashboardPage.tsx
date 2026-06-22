@@ -1,6 +1,5 @@
 import { useCompanies } from "../features/companies/hooks/useCompanies.ts";
 import { CompaniesTable } from "../features/companies/components/CompaniesTable";
-import {AppLayout} from "../components/layout/AppLayout";
 import {PageHeader} from "../components/layout/PageHeader";
 import {Button} from "../components/ui/Button";
 import {useNavigate} from "react-router-dom";
@@ -13,7 +12,7 @@ export default function DashboardPage() {
     if (error) return <p>{error}</p>
 
     return (
-        <AppLayout>
+        <>
             <PageHeader
                 title="Companies"
                 actions={
@@ -24,6 +23,6 @@ export default function DashboardPage() {
             />
 
             <CompaniesTable companies={companies} />
-        </AppLayout>
+        </>
     );
 }

@@ -8,7 +8,10 @@ type Props = {
 export function CompaniesTable({ companies }: Props) {
     if (companies.length === 0) {
         return (
-            <p>No companies found.</p>
+            <div style={{padding: "16px"}}>
+                <h3>No companies yet</h3>
+                <p>Start by adding your first company to build your pipeline.</p>
+            </div>
         );
     }
 
@@ -21,6 +24,7 @@ export function CompaniesTable({ companies }: Props) {
                 <th>Remote</th>
                 <th>Size</th>
                 <th>Location</th>
+                <th>Actions</th>
             </tr>
             </thead>
 
