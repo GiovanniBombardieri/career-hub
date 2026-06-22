@@ -36,10 +36,10 @@ export function CompanyForm({onSubmit}: Props) {
             onSubmit={handleSubmit}
             style={{
                 maxWidth: 720,
-                background: "#fff",
+                background: "var(--surface)",
                 padding: 24,
                 borderRadius: 12,
-                border: "1px solid #e5e7eb",
+                border: "1px solid var(--border)",
             }}
         >
             <h2 style={{ marginBottom: 20 }}>Create Company</h2>
@@ -49,7 +49,7 @@ export function CompanyForm({onSubmit}: Props) {
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
                     gap: 16,
-                    paddingRight: 16,
+                    paddingRight: 12,
                 }}
             >
 
@@ -217,10 +217,16 @@ export function CompanyForm({onSubmit}: Props) {
                     style={{
                         padding: "10px 16px",
                         borderRadius: 8,
-                        border: "none",
-                        background: "#111827",
-                        color: "white",
+                        border: "1px solid var(--border)",
+                        background: "var(--surface)",
+                        color: "var(--text)",
                         cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLButtonElement).style.background = "var(--hover)";
+                    }}
+                    onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLButtonElement).style.background = "transparent";
                     }}
                 >
                     Save company
@@ -237,4 +243,5 @@ const inputStyle: React.CSSProperties = {
     border: "1px solid #d1d5db",
     marginTop: 4,
     outline: "none",
+    boxSizing: "border-box",
 };

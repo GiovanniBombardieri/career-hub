@@ -8,8 +8,8 @@ export function Card({ children }: Pros ) {
     return (
         <div
             style={{
-                background:"white",
-                border: "1px solid #e5e5e5",
+                background:"var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: "8px",
                 padding: "16px",
             }}

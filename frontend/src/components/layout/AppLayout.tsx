@@ -13,7 +13,7 @@ export function AppLayout({ children }: Props) {
             <aside
                 style={{
                     width: "240px",
-                    borderRight: "1px solid #e5e5e5",
+                    borderRight: "1px solid var(--border)",
                     padding: "16px",
                 }}
             >

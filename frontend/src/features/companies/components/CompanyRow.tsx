@@ -13,7 +13,7 @@ export function CompanyRow({ company }: Props) {
                 cursor: "pointer",
             }}
             onMouseEnter={(e) => {
-                (e.currentTarget as HTMLTableRowElement).style.background = "#fafafa";
+                (e.currentTarget as HTMLTableRowElement).style.background = "var(--hover)";
             }}
             onMouseLeave={(e) => {
                 (e.currentTarget as HTMLTableRowElement).style.background = "transparent";

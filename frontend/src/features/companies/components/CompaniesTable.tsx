@@ -25,7 +25,7 @@ export function CompaniesTable({ companies }: Props) {
                 }}
             >
                 <thead>
-                <tr style={{ textAlign: "left", borderBottom: "1px solid #e5e5e5" }}>
+                <tr style={{ textAlign: "left", borderBottom: "1px solid var(--border)" }}>
                     <th style={{ padding: "12px" }}>Name</th>
                     <th style={{ padding: "12px" }}>Status</th>
                     <th style={{ padding: "12px" }}>Remote</th>

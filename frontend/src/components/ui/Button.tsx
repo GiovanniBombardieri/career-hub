@@ -9,9 +9,9 @@ export function Button(props: Props) {
             style={{
                 padding: "8px 12px",
                 borderRadius: "6px",
-                border: "1px solid #ddd",
-                background: "#111",
-                color: "white",
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+                color: "var(--text)",
                 cursor: "pointer",
             }}
         />
