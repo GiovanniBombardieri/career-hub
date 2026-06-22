@@ -103,9 +103,11 @@ export function CompanyForm({onSubmit}: Props) {
                     }
                 >
                     <option value="prospect">Prospect</option>
+                    <option value="watching">Watching</option>
+                    <option value="interested">Interested</option>
                     <option value="applied">Applied</option>
                     <option value="interviewing">Interviewing</option>
-                    <option value="offer">Offer</option>
+                    <option value="employee">Employee</option>
                     <option value="rejected">Rejected</option>
                     <option value="archived">Archived</option>
                 </select>
