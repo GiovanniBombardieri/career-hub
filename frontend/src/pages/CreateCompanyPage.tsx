@@ -2,6 +2,8 @@ import {CompanyForm} from "../features/companies/components/CompanyForm";
 import {companyService} from "../features/companies/services/companyService.ts";
 import type {CreateCompanyPayload} from "../types/company";
 import {useNavigate} from "react-router-dom";
+import {PageHeader} from "../components/layout/PageHeader.tsx";
+import {Card} from "../components/ui/Card.tsx";
 
 export default function CreateCompanyPage() {
     const navigate = useNavigate();
@@ -17,11 +19,11 @@ export default function CreateCompanyPage() {
 
     return (
         <>
-            <h1>Create Company</h1>
+            <PageHeader  title="Create Company" />
 
-            <CompanyForm
-                onSubmit={handleSubmit}
-            />
+            <Card>
+                <CompanyForm onSubmit={handleSubmit}/>
+            </Card>
         </>
     );
 }

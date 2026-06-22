@@ -3,6 +3,7 @@ import { CompaniesTable } from "../features/companies/components/CompaniesTable"
 import {PageHeader} from "../components/layout/PageHeader";
 import {Button} from "../components/ui/Button";
 import {useNavigate} from "react-router-dom";
+import {Card} from "../components/ui/Card.tsx";
 
 export default function DashboardPage() {
     const { companies, loading, error } = useCompanies();
@@ -22,7 +23,9 @@ export default function DashboardPage() {
                 }
             />
 
-            <CompaniesTable companies={companies} />
+            <Card>
+                <CompaniesTable companies={companies} />
+            </Card>
         </>
     );
 }

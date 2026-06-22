@@ -16,26 +16,34 @@ export function CompaniesTable({ companies }: Props) {
     }
 
     return (
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Status</th>
-                <th>Remote</th>
-                <th>Size</th>
-                <th>Location</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
+        <div style={{ overflowX: "auto" }}>
+            <table
+                style={{
+                    width: "100%",
+                    borderCollapse: "collapse",
+                    fontSize: "14px",
+                }}
+            >
+                <thead>
+                <tr style={{ textAlign: "left", borderBottom: "1px solid #e5e5e5" }}>
+                    <th style={{ padding: "12px" }}>Name</th>
+                    <th style={{ padding: "12px" }}>Status</th>
+                    <th style={{ padding: "12px" }}>Remote</th>
+                    <th style={{ padding: "12px" }}>Size</th>
+                    <th style={{ padding: "12px" }}>Location</th>
+                    <th style={{ padding: "12px" }}>Actions</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            {companies.map(company => (
-                <CompanyRow
-                    key={company.id}
-                    company={company}
-                />
-            ))}
-            </tbody>
-        </table>
+                <tbody>
+                {companies.map(company => (
+                    <CompanyRow
+                        key={company.id}
+                        company={company}
+                    />
+                ))}
+                </tbody>
+            </table>
+        </div>
     );
 }

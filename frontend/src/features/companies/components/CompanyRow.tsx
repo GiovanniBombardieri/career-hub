@@ -7,25 +7,46 @@ type Props = {
 
 export function CompanyRow({ company }: Props) {
     return (
-        <tr>
-            <td>{company.name}</td>
+        <tr
+            style={{
+                borderBottom: "1px solid #f0f0f0",
+                cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+                (e.currentTarget as HTMLTableRowElement).style.background = "#fafafa";
+            }}
+            onMouseLeave={(e) => {
+                (e.currentTarget as HTMLTableRowElement).style.background = "transparent";
+            }}
+        >
+            <td style={{ padding: "12px" }}>
+                <div style={{ fontWeight: 600 }}>
+                    {company.name}
+                </div>
+            </td>
 
-            <td>
+            <td style={{ padding: "12px"}}>
                 <StatusBadge status={company.status}/>
             </td>
 
-            <td>{company.remote_policy}</td>
+            <td style={{ padding: "12px" }}>
+                {company.remote_policy}
+            </td>
 
-            <td>{company.company_size}</td>
+            <td style={{ padding: "12px" }}>
+                {company.company_size}
+            </td>
 
-            <td>
+            <td style={{ padding: "12px" }}>
                 {[company.city, company.region]
                     .filter(Boolean)
                     .join(", ")}
             </td>
 
             <td>
-                <button>
+                <button onClick={() => {
+                    // futuro: navigate('companies/${companies.id}')
+                }}>
                     View
                 </button>
             </td>
