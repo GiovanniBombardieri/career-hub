@@ -38,7 +38,7 @@ class ApiResponse
         ], $code);
     }
 
-    private function transformData(mixed $data): mixed
+    private static function transformData(mixed $data): mixed
     {
         if ($data instanceof LengthAwarePaginator) {
             return $data->items();

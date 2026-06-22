@@ -125,7 +125,7 @@ export function CompanyForm({onSubmit}: Props) {
                 >
                     <option value="remote">Remote</option>
                     <option value="hybrid">Hybrid</option>
-                    <option value="onsite">Onsite</option>
+                    <option value="on_site">Onsite</option>
                 </select>
             </div>
 
