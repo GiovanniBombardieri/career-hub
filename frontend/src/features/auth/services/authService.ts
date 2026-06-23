@@ -1,4 +1,4 @@
-import { api } from "../../../api/client";
+import { api } from "../../../api/client.ts";
 
 export const authService = {
     login: async (
@@ -17,5 +17,10 @@ export const authService = {
         const response = await api.post("/me");
 
         return response.data;
-    }
+    },
+
+    logout: async () => {
+        const response = await api.post("/logout");
+        return response.data;
+    },
 };

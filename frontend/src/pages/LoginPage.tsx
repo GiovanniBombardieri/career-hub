@@ -1,8 +1,29 @@
 import {useState} from "react";
+import {setToken} from "../utils/auth.ts";
+import {useNavigate} from "react-router-dom";
+import {authService} from "../features/auth/services/authService.ts";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        try {
+            const response = await authService.login(
+                email,
+                password,
+            );
+
+            setToken(response.token);
+
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div
@@ -68,6 +89,7 @@ export default function LoginPage() {
                         cursor: "pointer",
                         marginTop: "10px",
                     }}
+                    onClick={handleLogin}
                 >
                     Login
                 </button>
