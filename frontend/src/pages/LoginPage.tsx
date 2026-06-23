@@ -1,12 +1,13 @@
 import {useState} from "react";
-import {setToken} from "../utils/auth.ts";
 import {useNavigate} from "react-router-dom";
 import {authService} from "../features/auth/services/authService.ts";
+import { useAuth } from "../features/auth/context/AuthContext.tsx";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { login } = useAuth()
 
     const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -17,7 +18,7 @@ export default function LoginPage() {
                 password,
             );
 
-            setToken(response.token);
+            login(response.token, response.user);
 
             navigate("/");
         } catch (error) {

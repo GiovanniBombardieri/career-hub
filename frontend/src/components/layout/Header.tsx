@@ -1,19 +1,9 @@
 import {useTheme} from "../../hooks/useTheme";
-import {useNavigate} from "react-router-dom";
-import {removeToken} from "../../utils/auth.ts";
+import { useAuth } from "../../features/auth/context/AuthContext.tsx";
 
 export function Header() {
     const { theme, toggleTheme } = useTheme();
-    const navigate = useNavigate();
-
-    const handleLogout = async() => {
-        try {
-            removeToken();
-            navigate("/login");
-        } catch (e) {
-            console.error(e);
-        }
-    };
+    const { user, logout } = useAuth();
 
     return (
         <header
@@ -30,6 +20,8 @@ export function Header() {
                 Dashboard
             </h2>
 
+            <span>Welcome, {user?.name}!</span>
+
             <div
                 style={{
                     width: "8%",
@@ -38,7 +30,7 @@ export function Header() {
                 }}
             >
                 <button
-                    onClick={handleLogout}
+                    onClick={logout}
                     style={{
                         border: "1px solid var(--border)",
                         background: "var(--surface)",

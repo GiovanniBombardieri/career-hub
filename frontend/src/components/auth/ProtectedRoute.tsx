@@ -1,18 +1,18 @@
 import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
-import { getToken } from "../../utils/auth.ts";
+import {useAuth} from "../../features/auth/context/AuthContext.tsx";
 
 type Props = {
     children: ReactNode;
 }
 
 export function ProtectedRoute({ children }: Props) {
-    const token = getToken();
+    const { isAuthenticated, loading } = useAuth();
 
-    if (!token) {
-        return <Navigate to="/login" replace />;
+    if (loading) {
+        return null;
     }
-    if (!getToken()) {
+    if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }
 
