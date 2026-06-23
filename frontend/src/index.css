@@ -105,7 +105,16 @@
   font-weight: 500;
 }
 
-
+.inputStyle {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  margin: 5px 0;
+}
 /*#root {*/
 /*  width: 1126px;*/
 /*  max-width: 100%;*/

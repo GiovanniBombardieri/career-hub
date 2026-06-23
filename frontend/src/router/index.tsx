@@ -3,10 +3,20 @@ import DashboardPage from "../pages/DashboardPage.tsx";
 import CreateCompanyPage from "../pages/CreateCompanyPage.tsx";
 import {AppLayout} from "../components/layout/AppLayout";
 import CompanyDetailPage from "../pages/CompanyDetailPage.tsx";
+import LoginPage from "../pages/LoginPage.tsx";
+import {ProtectedRoute} from "../components/auth/ProtectedRoute.tsx";
 
 export const router = createBrowserRouter([
     {
-        element: <AppLayout />,
+        path: "/login",
+        element: <LoginPage />
+    },
+    {
+        element: (
+            <ProtectedRoute>
+                <AppLayout />
+            </ProtectedRoute>
+        ),
         children: [
             {
                 path: "/",
