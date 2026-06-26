@@ -13,6 +13,7 @@ export default function CompanyDetailPage() {
         refetch,
     } = useCompanyNotes(Number(id));
     const [noteContent, setNoteContent] = useState("");
+    const [savingNote, setSavingNote] = useState(false);
 
     const handleSaveNote = async () => {
         const content = noteContent.trim();
@@ -22,14 +23,16 @@ export default function CompanyDetailPage() {
         }
 
         try {
+            setSavingNote(true);
             await companyNotesService.create(Number(id), {
                 content,
             });
-
             setNoteContent("");
             await refetch();
         } catch (error) {
             console.error("Failed to save note", error);
+        } finally {
+            setSavingNote(false);
         }
     };
 
@@ -128,13 +131,19 @@ export default function CompanyDetailPage() {
                                 color: "var(--text)",
                                 resize: "vertical",
                             }}
+                            onKeyDown={(e) => {
+                                if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                                    void handleSaveNote();
+                                }
+                            }}
                         />
 
                         <button
                             style={{ margin: "8px" }}
                             onClick={handleSaveNote}
+                            disabled={savingNote || !noteContent.trim()}
                         >
-                            Save note
+                            {savingNote ? "Saving..." : "Save note"}
                         </button>
 
                         {notesLoading ? (
