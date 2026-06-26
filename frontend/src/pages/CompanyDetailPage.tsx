@@ -1,9 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useCompany } from "../features/companies/hooks/useCompanies.ts";
+import {useCompanyNotes} from "../features/company-notes/hooks/useCompanyNotes.ts";
 
 export default function CompanyDetailPage() {
     const { id } = useParams();
     const { company, loading, error } = useCompany(Number(id));
+    const {
+        notes,
+        loading: notesLoading,
+    } = useCompanyNotes(Number(id));
 
     if (loading) return <p>Loading...</p>
     if (error) return <p>{error}</p>
@@ -104,11 +109,41 @@ export default function CompanyDetailPage() {
                             Save note
                         </button>
 
-                        <div style={{ marginTop: "12px" }}>
-                            <p style={{ fontSize: "12px", opacity: 0.7 }}>
+                        {notesLoading ? (
+                            <p style={{ marginTop: "12px" }}>Loading notes...</p>
+                        ) : notes.length === 0 ? (
+                            <p style={{ marginTop: "12px", fontSize: "12px", opacity: 0.7 }}>
                                 No notes yet
                             </p>
-                        </div>
+                        ) : (
+                            notes.map((note) => (
+                                <div
+                                    key={note.id}
+                                    style={{
+                                        marginTop: "12px",
+                                        padding: "12px",
+                                        border: "1px solid var(--border)",
+                                        borderRadius: "8px",
+                                        background: "var(--bg)",
+                                    }}
+                                >
+                                    <div style={{ whiteSpace: "pre-wrap" }}>
+                                        {note.content}
+                                    </div>
+
+                                    <p
+                                        style={{
+                                            marginTop: "8px",
+                                            fontSize: "12px",
+                                            opacity: 0.7,
+                                            color: "var(--text)",
+                                        }}
+                                    >
+                                        {new Date(note.created_at).toLocaleString()}
+                                    </p>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
 

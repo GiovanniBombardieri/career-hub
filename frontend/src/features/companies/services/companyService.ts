@@ -21,5 +21,5 @@ export const companyService = {
     getById: async (id: number) => {
         const response = await api.get(`/companies/${id}`);
         return response.data;
-    }
+    },
 };
