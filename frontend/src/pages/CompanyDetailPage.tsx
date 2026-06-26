@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { useCompany } from "../features/companies/hooks/useCompanies.ts";
-import {useCompanyNotes} from "../features/company-notes/hooks/useCompanyNotes.ts";
+import { useCompanyNotes } from "../features/company-notes/hooks/useCompanyNotes.ts";
+import { companyNotesService } from "../features/company-notes/services/companyNotesService.ts";
 
 export default function CompanyDetailPage() {
     const { id } = useParams();
@@ -8,7 +10,28 @@ export default function CompanyDetailPage() {
     const {
         notes,
         loading: notesLoading,
+        refetch,
     } = useCompanyNotes(Number(id));
+    const [noteContent, setNoteContent] = useState("");
+
+    const handleSaveNote = async () => {
+        const content = noteContent.trim();
+
+        if (!content) {
+            return;
+        }
+
+        try {
+            await companyNotesService.create(Number(id), {
+                content,
+            });
+
+            setNoteContent("");
+            await refetch();
+        } catch (error) {
+            console.error("Failed to save note", error);
+        }
+    };
 
     if (loading) return <p>Loading...</p>
     if (error) return <p>{error}</p>
@@ -92,6 +115,8 @@ export default function CompanyDetailPage() {
                         <h3 style={{ marginTop: 0 }}>Notes</h3>
 
                         <textarea
+                            value={noteContent}
+                            onChange={(e) => setNoteContent(e.target.value)}
                             placeholder="Write a note..."
                             style={{
                                 width: "95%",
@@ -105,7 +130,10 @@ export default function CompanyDetailPage() {
                             }}
                         />
 
-                        <button style={{ margin: "8px" }}>
+                        <button
+                            style={{ margin: "8px" }}
+                            onClick={handleSaveNote}
+                        >
                             Save note
                         </button>
 
