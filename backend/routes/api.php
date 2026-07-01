@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\CompanyNoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CompanyController;
@@ -13,4 +14,5 @@ Route::middleware('auth:sanctum')
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/companies/{company}/notes', [CompanyNoteController::class, 'index']);
         Route::post('/companies/{company}/notes', [CompanyNoteController::class, 'store']);
+        Route::get('/companies/{company}/contacts', [ContactController::class, 'index']);
     });
