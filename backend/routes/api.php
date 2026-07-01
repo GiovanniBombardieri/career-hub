@@ -15,4 +15,5 @@ Route::middleware('auth:sanctum')
         Route::get('/companies/{company}/notes', [CompanyNoteController::class, 'index']);
         Route::post('/companies/{company}/notes', [CompanyNoteController::class, 'store']);
         Route::get('/companies/{company}/contacts', [ContactController::class, 'index']);
+        Route::post('/companies/{company}/contacts', [ContactController::class, 'store']);
     });
