@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useCompany } from "../features/companies/hooks/useCompanies.ts";
 import { useCompanyNotes } from "../features/company-notes/hooks/useCompanyNotes.ts";
 import { companyNotesService } from "../features/company-notes/services/companyNotesService.ts";
+import { useCompanyContacts } from "../features/contacts/hooks/useCompanyContacts";
+import { contactsService } from "../features/contacts/services/contactsService";
 
 export default function CompanyDetailPage() {
     const { id } = useParams();
@@ -14,6 +16,10 @@ export default function CompanyDetailPage() {
     } = useCompanyNotes(Number(id));
     const [noteContent, setNoteContent] = useState("");
     const [savingNote, setSavingNote] = useState(false);
+    const {
+        contacts,
+        loading: contactsLoading,
+    } = useCompanyContacts(Number(id));
 
     const handleSaveNote = async () => {
         const content = noteContent.trim();
@@ -210,7 +216,71 @@ export default function CompanyDetailPage() {
                         <h3 style={{ marginTop: 0 }}>Contacts</h3>
 
                         <div style={{ fontSize: "13px", opacity: 0.7 }}>
-                            No contact yet
+                            {contactsLoading ? (
+                                <p>Loading contacts...</p>
+                            ) : contacts.length === 0 ? (
+                                <p
+                                    style={{
+                                        fontSize: "13px",
+                                        opacity: 0.7,
+                                    }}
+                                >
+                                    No contacts yet
+                                </p>
+                            ) : (
+                                contacts.map(contact => (
+                                    <div
+                                        key={contact.id}
+                                        style={{
+                                            marginTop: "12px",
+                                            padding: "12px",
+                                            border: "1px solid var(--border)",
+                                            borderRadius: "8px",
+                                            background: "var(--bg)",
+                                        }}
+                                    >
+                                        <strong>{contact.full_name}</strong>
+
+                                        <div
+                                            style={{
+                                                fontSize: "13px",
+                                                opacity: 0.8,
+                                                marginTop: "4px",
+                                            }}
+                                        >
+                                            {contact.role.name}
+                                        </div>
+
+                                        {contact.email && (
+                                            <div style={{ marginTop: "8px" }}>
+                                                {contact.email}
+                                            </div>
+                                        )}
+
+                                        {contact.linkedin_url && (
+                                            <div>
+                                                <a
+                                                    href={contact.linkedin_url}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    LinkedIn
+                                                </a>
+                                            </div>
+                                        )}
+
+                                        <div
+                                            style={{
+                                                marginTop: "8px",
+                                                fontSize: "12px",
+                                                opacity: 0.7,
+                                            }}
+                                        >
+                                            {contact.relationship_status}
+                                        </div>
+                                    </div>
+                                ))
+                            )}
                         </div>
                     </div>
 
