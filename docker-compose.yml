@@ -15,5 +15,44 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  backend:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+
+    container_name: career-hub-backend
+
+    working_dir: /var/www
+
+    volumes:
+      - ./backend:/var/www
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+
+    container_name: career-hub-frontend
+
+    working_dir: /app
+
+    volumes:
+        - ./frontend:/app
+
+    ports:
+      - "5173:5173"
+
+    command: >
+      sh -c "
+        npm install &&
+        npm run dev -- --host
+      "
+
 volumes:
   postgres_data:
