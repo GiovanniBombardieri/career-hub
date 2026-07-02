@@ -5,6 +5,7 @@ import { useCompanyNotes } from "../features/company-notes/hooks/useCompanyNotes
 import { companyNotesService } from "../features/company-notes/services/companyNotesService.ts";
 import { useCompanyContacts } from "../features/contacts/hooks/useCompanyContacts";
 import { contactsService } from "../features/contacts/services/contactsService";
+import { useContactRoles } from "../features/contacts/hooks/useContactRoles";
 
 export default function CompanyDetailPage() {
     const { id } = useParams();
@@ -20,6 +21,14 @@ export default function CompanyDetailPage() {
         contacts,
         loading: contactsLoading,
     } = useCompanyContacts(Number(id));
+    const { roles } = useContactRoles();
+    const [contactFullName, setContactFullName] = useState("");
+    const [contactEmail, setContactEmail] = useState("");
+    const [contactLinkedin, setContactLinkedin] = useState("");
+    const [contactRoleId, setContactRoleId] = useState<number | "">("");
+    const [relationshipStatus, setRelationshipStatus] = useState("contacted");
+
+    const [savingContact, setSavingContact] = useState(false);
 
     const handleSaveNote = async () => {
         const content = noteContent.trim();
@@ -39,6 +48,35 @@ export default function CompanyDetailPage() {
             console.error("Failed to save note", error);
         } finally {
             setSavingNote(false);
+        }
+    };
+
+    const handleSaveContact = async () => {
+        if (!contactFullName.trim() || !contactRoleId) return;
+
+        try {
+            setSavingContact(true);
+
+            await contactsService.create(Number(id), {
+                full_name: contactFullName,
+                email: contactEmail || undefined,
+                linkedin_url: contactLinkedin || undefined,
+                contact_role_id: Number(contactRoleId),
+                relationship_status: relationshipStatus,
+                notes: undefined,
+            });
+
+            setContactFullName("");
+            setContactEmail("");
+            setContactLinkedin("");
+            setContactRoleId("");
+            setRelationshipStatus("contacted");
+
+            window.location.reload();
+        } catch (e) {
+            console.error("Failed to create contact", e);
+        } finally {
+            setSavingContact(false);
         }
     };
 
@@ -214,6 +252,63 @@ export default function CompanyDetailPage() {
 
                     <div>
                         <h3 style={{ marginTop: 0 }}>Contacts</h3>
+
+                        <div style={{ marginBottom: "12px", padding: "12px", border: "1px solid var(--border)", borderRadius: "8px" }}>
+
+                            <input
+                                placeholder="Full name"
+                                value={contactFullName}
+                                onChange={(e) => setContactFullName(e.target.value)}
+                                style={{ width: "100%", marginBottom: "8px" }}
+                            />
+
+                            <input
+                                placeholder="Email"
+                                value={contactEmail}
+                                onChange={(e) => setContactEmail(e.target.value)}
+                                style={{ width: "100%", marginBottom: "8px" }}
+                            />
+
+                            <input
+                                placeholder="LinkedIn URL"
+                                value={contactLinkedin}
+                                onChange={(e) => setContactLinkedin(e.target.value)}
+                                style={{ width: "100%", marginBottom: "8px" }}
+                            />
+
+                            {/* ROLE SELECT */}
+                            <select
+                                value={contactRoleId}
+                                onChange={(e) => setContactRoleId(Number(e.target.value))}
+                                style={{ width: "100%", marginBottom: "8px" }}
+                            >
+                                <option value="">Select role</option>
+                                {roles.map((role) => (
+                                    <option key={role.id} value={role.id}>
+                                        {role.name}
+                                    </option>
+                                ))}
+                            </select>
+
+                            {/* STATUS */}
+                            <select
+                                value={relationshipStatus}
+                                onChange={(e) => setRelationshipStatus(e.target.value)}
+                                style={{ width: "100%", marginBottom: "8px" }}
+                            >
+                                <option value="contacted">Contacted</option>
+                                <option value="not_contacted">Not contacted</option>
+                                <option value="in_progress">In progress</option>
+                                <option value="replied">Replied</option>
+                            </select>
+
+                            <button
+                                onClick={handleSaveContact}
+                                disabled={savingContact}
+                            >
+                                {savingContact ? "Saving..." : "Add contact"}
+                            </button>
+                        </div>
 
                         <div style={{ fontSize: "13px", opacity: 0.7 }}>
                             {contactsLoading ? (

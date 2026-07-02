@@ -15,7 +15,7 @@ class ContactController extends Controller
         return ApiResponse::success(
             ContactResource::collection(
                 $company->contacts()
-                    ->with('contactRole')
+                    ->with('role')
                     ->latest()
                     ->get()
             ),
@@ -32,7 +32,7 @@ class ContactController extends Controller
             $request->validated()
         );
 
-        $contact->load('contactRole');
+        $contact->load('role');
 
         return ApiResponse::success(
             new ContactResource($contact),
